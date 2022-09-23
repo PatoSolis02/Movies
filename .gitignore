@@ -1,0 +1,6 @@
+# Default ignored files
+.idea/workspace.xml
+out/
+*.class
+data/title.basics.tsv
+data/title.ratings.tsv
