@@ -27,6 +27,13 @@ public class MyIMDB extends IMDB {
         super(small);
     }
 
+    /**
+     *  Creates a new list of movies that contain the substring passed in as words.
+     *
+     * @param type the movie type, e.g. "MOVIE", "TV_SHOW", etc.
+     * @param words the words as a string that the movie title must contain to match
+     * @return Collection<Movie> result that contains movies that contain specific substring
+     */
     @Override
     public Collection<Movie> getMovieTitleWithWords(String type, String words) {
         // we simply loop over movieList and add to our list the movies that
@@ -34,7 +41,12 @@ public class MyIMDB extends IMDB {
         List<Movie> result = new LinkedList<>();
 
         // TODO Activity 1.2
-
+        TitleType titleType = TitleType.valueOf("MOVIE");
+        for(Movie movie : movieList){
+            if(movie.getTitleType() == titleType && movie.getTitle().contains(words)){
+                result.add(movie);
+            }
+        }
         return result;
     }
 

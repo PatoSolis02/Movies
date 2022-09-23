@@ -136,8 +136,16 @@ public abstract class IMDB {
 
         // read each movie line by line and add the new Movie object to the end
         // of movieList using Movie.createMovie()
-
-        // TODO Activity 1
+        in.nextLine();
+        while(in.hasNext()){
+            String line = in.nextLine();
+            String[] fields = line.split("\t");
+            if(!fields[4].equals(IS_ADULT)){
+                Movie movie = Movie.createMovie(fields[0], fields[1], fields[2], fields[5], fields[7], fields[8]);
+                movieList.add(movie);
+            }
+        }
+        System.out.println("Total movies: " + movieList.size());
 
         in.close();
     }

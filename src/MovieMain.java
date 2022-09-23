@@ -17,7 +17,7 @@ import java.util.Scanner;
  *
  * @author RIT CS
  */
-public class MovieMain {
+public class    MovieMain {
     // INPUT COMMANDS
     /** find movie titles that contain a substring */
     private final static String CONTAINS = "CONTAINS";
