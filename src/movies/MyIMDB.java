@@ -14,7 +14,9 @@ import java.util.*;
  * @author YOUR NAME HERE
  */
 public class MyIMDB extends IMDB {
-    /** The minimum number of votes a movie needs to be considered for top ranking */
+    /**
+     * The minimum number of votes a movie needs to be considered for top ranking
+     */
     private final static int MIN_NUM_VOTES_FOR_TOP_RANKED = 1000;
 
     /**
@@ -28,9 +30,9 @@ public class MyIMDB extends IMDB {
     }
 
     /**
-     *  Creates a new list of movies that contain the substring passed in as words.
+     * Creates a new list of movies that contain the substring passed in as words.
      *
-     * @param type the movie type, e.g. "MOVIE", "TV_SHOW", etc.
+     * @param type  the movie type, e.g. "MOVIE", "TV_SHOW", etc.
      * @param words the words as a string that the movie title must contain to match
      * @return Collection<Movie> result that contains movies that contain specific substring
      */
@@ -42,8 +44,8 @@ public class MyIMDB extends IMDB {
 
         // TODO Activity 1.2
         TitleType titleType = TitleType.valueOf("MOVIE");
-        for(Movie movie : movieList){
-            if(movie.getTitleType() == titleType && movie.getTitle().contains(words)){
+        for (Movie movie : movieList) {
+            if (movie.getTitleType() == titleType && movie.getTitle().contains(words)) {
                 result.add(movie);
             }
         }
@@ -66,8 +68,8 @@ public class MyIMDB extends IMDB {
         // TODO Activity 3.2
         Genre checkGenre = Genre.valueOf(genre);
         TitleType titleType = TitleType.valueOf(type);
-        for(Movie movie: movieList){
-            if(movie.getGenres().contains(checkGenre) && movie.getYear() == year && movie.getTitleType() == titleType){
+        for (Movie movie : movieList) {
+            if (movie.getGenres().contains(checkGenre) && movie.getYear() == year && movie.getTitleType() == titleType) {
                 result.add(movie);
             }
         }
@@ -82,9 +84,9 @@ public class MyIMDB extends IMDB {
 
         // TODO Activity 4.2
         TitleType titleType = TitleType.valueOf(type);
-        for(Movie movie: movieList){
-            if(movie.getTitleType() == titleType && movie.getRuntimeMinutes() >= start
-                    && movie.getRuntimeMinutes() <= end){
+        for (Movie movie : movieList) {
+            if (movie.getTitleType() == titleType && movie.getRuntimeMinutes() >= start
+                    && movie.getRuntimeMinutes() <= end) {
                 result.add(movie);
             }
         }
@@ -99,8 +101,8 @@ public class MyIMDB extends IMDB {
         // TODO Activity 5.3
         TitleType titleType = TitleType.valueOf(type);
 
-        for(Movie movie: movieList){
-            if(movie.getTitleType() == titleType){
+        for (Movie movie : movieList) {
+            if (movie.getTitleType() == titleType) {
                 result.add(movie);
             }
         }
@@ -113,7 +115,20 @@ public class MyIMDB extends IMDB {
         Map<Integer, List<Movie>> result = new TreeMap<>();
 
         // TODO Activity 6.2
-
+        Set<Rating> orderedRatings = new TreeSet<>();
+        TitleType titleType = TitleType.valueOf(type);
+        for (Movie movie : movieList) {
+            if (movie.getRating().getNumVotes() >= MIN_NUM_VOTES_FOR_TOP_RANKED && movie.getTitleType() == titleType &&
+                    movie.getYear() >= start && movie.getYear() <= end) {
+                orderedRatings.add(movie.getRating());
+            }
+        }
+        for (int i = start; i <= end; i++) {
+            result.put(start, new LinkedList<>());
+        }
+        for(Rating orderedRating : orderedRatings){
+            if(result.get(orderedRating.))
+        }
         return result;
     }
 }

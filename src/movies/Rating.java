@@ -102,10 +102,14 @@ public final class Rating implements Comparable<Rating> {
     @Override
     public int compareTo(Rating other) {
         // TODO Activity 6.1
-
+        int result = Double.compare(other.rating, this.rating);
+        if(result == 0){
+            result = other.numVotes - this.numVotes;
+            if(result == 0) {
+                result = this.ID.compareTo(other.ID);
+            }
+        }
         // to compare two doubles, d1, d2, with an integer result, use: Double.compare(d1, d2)
-
-
-        return 0;  // remove when implemented correctly
+        return result;  // remove when implemented correctly
     }
 }
