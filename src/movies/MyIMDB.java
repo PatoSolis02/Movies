@@ -71,7 +71,6 @@ public class MyIMDB extends IMDB {
                 result.add(movie);
             }
         }
-
         return result;
     }
 
