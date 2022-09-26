@@ -23,7 +23,10 @@ public class MovieComparatorRuntime implements Comparator<Movie> {
     @Override
     public int compare(Movie m1, Movie m2) {
         // TODO Activity 4.1
-
-        return 0;   // remove when correctly implemented
+        int result = m2.getRuntimeMinutes() - m1.getRuntimeMinutes();
+        if(result == 0) {
+            result = m1.getTitle().compareTo(m2.getTitle());
+        }
+        return result;   // remove when correctly implemented
     }
 }

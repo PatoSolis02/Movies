@@ -81,7 +81,13 @@ public class MyIMDB extends IMDB {
         Set<Movie> result = new TreeSet<>(new MovieComparatorRuntime());
 
         // TODO Activity 4.2
-
+        TitleType titleType = TitleType.valueOf(type);
+        for(Movie movie: movieList){
+            if(movie.getTitleType() == titleType && movie.getRuntimeMinutes() >= start
+                    && movie.getRuntimeMinutes() <= end){
+                result.add(movie);
+            }
+        }
         return result;
     }
 
