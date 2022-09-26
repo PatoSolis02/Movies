@@ -185,10 +185,24 @@ public abstract class IMDB {
 
         // read the ratings in and use the movieMap to find the movie and update
         // its rating.
-
-
-        // for movies with no ratings set a 0 rating for it so it is not null
+        in.nextLine();
+        while(in.hasNext()){
+            String line = in.nextLine();
+            String[] fields = line.split("\t");
+            Rating rating = new Rating(fields[0], Double.parseDouble(fields[1]), Integer.parseInt(fields[2]));
+            Movie movie = this.movieMap.get(rating.getID());
+            if(movie != null) {
+                movie.setRating(rating);
+            }
+        }
+        // for movies with no ratings set a 0 rating for it, so it is not null
         // (important for last activity when ordering Rating objects)
+        for(Movie movie: movieList){
+            if(movie.getRating() == null){
+                Rating rating = new Rating(movie.getID(), 0.0, 0);
+                movie.setRating(rating);
+            }
+        }
 
         in.close();
     }

@@ -95,12 +95,17 @@ public class MyIMDB extends IMDB {
     public Collection<Movie> getMoviesMostVotes(int num, String type) {
         // use a comparator that orders Movie's of a type by descending number
         // of votes
-
         List<Movie> result = new LinkedList<>();
-
         // TODO Activity 5.3
+        TitleType titleType = TitleType.valueOf(type);
 
-        return result;
+        for(Movie movie: movieList){
+            if(movie.getTitleType() == titleType){
+                result.add(movie);
+            }
+        }
+        result.sort(new MovieComparatorVotes());
+        return result.subList(0, num);
     }
 
     @Override
