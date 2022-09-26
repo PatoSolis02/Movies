@@ -186,8 +186,12 @@ public final class Movie implements Comparable<Movie> {
     @Override
     public boolean equals(Object other) {
         // TODO Activity 2.1
-
-        return true;  // remove when correctly implemented
+        boolean result = false;
+        if(other instanceof Movie otherMovie) {
+            result = this.title.equals(otherMovie.title)
+                    && this.year == otherMovie.year;
+        }
+        return result;
     }
 
     /**
@@ -196,8 +200,7 @@ public final class Movie implements Comparable<Movie> {
     @Override
     public int hashCode() {
         // TODO Activity 2.1
-
-        return 0;     // remove when correctly implemented
+        return this.title.hashCode() + this.year;
     }
 
     /**
@@ -210,7 +213,10 @@ public final class Movie implements Comparable<Movie> {
     @Override
     public int compareTo(Movie other) {
         // TODO Activity 3.1
-
-        return 0;   // remove when correctly implemented
+        int result = this.title.compareTo(other.title);
+        if(result == 0){
+            result = this.year - other.year;
+        }
+        return result;   // remove when correctly implemented
     }
 }

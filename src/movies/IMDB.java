@@ -160,6 +160,9 @@ public abstract class IMDB {
         this.movieMap = new HashMap<>();
 
         // TODO Activity 2.2
+        for(Movie movie: movieList){
+            this.movieMap.put(movie.getID(), movie);
+        }
     }
 
     /**

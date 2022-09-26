@@ -54,7 +54,7 @@ public class MyIMDB extends IMDB {
     public Movie findMovieByID(String ID) {
         // TODO Activity 2.3
 
-        return null;   // remove when correctly implemented
+        return movieMap.get(ID);
     }
 
     @Override
@@ -64,6 +64,13 @@ public class MyIMDB extends IMDB {
         Set<Movie> result = new TreeSet<>();
 
         // TODO Activity 3.2
+        Genre checkGenre = Genre.valueOf(genre);
+        TitleType titleType = TitleType.valueOf(type);
+        for(Movie movie: movieList){
+            if(movie.getGenres().contains(checkGenre) && movie.getYear() == year && movie.getTitleType() == titleType){
+                result.add(movie);
+            }
+        }
 
         return result;
     }
