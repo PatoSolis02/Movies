@@ -59,7 +59,7 @@ public class MyIMDB extends IMDB {
      * @param ID the movie's tConst string ID
      * @return Movie, movie with tConst ID
      */
-    @Override
+   @Override
     public Movie findMovieByID(String ID) {
         // TODO Activity 2.3
 
@@ -126,7 +126,6 @@ public class MyIMDB extends IMDB {
 
         return result;
     }
-
     /**
      * Creates a new LinkedList of movies that are the same type and orders them based on descending number
      * of votes.
@@ -151,7 +150,6 @@ public class MyIMDB extends IMDB {
         result.sort(new MovieComparatorVotes());
         return result.subList(0, num);
     }
-
     /**
      * Creates a new Map with years as keys and the values are lists containing Movie. The lists contain
      * the movies that are the highest rated with a certain type and in a specific year with a minimum
@@ -161,7 +159,7 @@ public class MyIMDB extends IMDB {
      * @param type the movie type, e.g. "MOVIE", "TV_SHOW", etc.
      * @param start the start year (inclusive)
      * @param end the end year (inclusive)
-     * @return
+     * @return Map<Integer, List<Movie>> top-rated movies in certain years
      */
     @Override
     public Map<Integer, List<Movie>> getMoviesTopRated(int num, String type, int start, int end) {
