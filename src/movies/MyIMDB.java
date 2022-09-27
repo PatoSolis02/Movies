@@ -53,6 +53,12 @@ public class MyIMDB extends IMDB {
         return result;
     }
 
+    /**
+     * Gets movies by tConst ID in O(1) time.
+     *
+     * @param ID the movie's tConst string ID
+     * @return Movie, movie with tConst ID
+     */
     @Override
     public Movie findMovieByID(String ID) {
         // TODO Activity 2.3
@@ -60,6 +66,15 @@ public class MyIMDB extends IMDB {
         return movieMap.get(ID);
     }
 
+    /**
+     * Creates a new TreeSet of movies that are the same type and year and contains genre specified.
+     *
+     * @param type the movie type, e.g. "MOVIE", "TV_SHOW", etc.
+     * @param year the year
+     * @param genre the genre, e.g. "Crime", "Drama", etc.
+     * @return Collection<Movie> result that contains movies that have the same type, year,
+     *          and contain genre specified.
+     */
     @Override
     public Collection<Movie> getMoviesByYearAndGenre(String type, int year, String genre) {
         // we use Movie's natural order comparison which is to order Movie's of a
@@ -77,6 +92,16 @@ public class MyIMDB extends IMDB {
         return result;
     }
 
+    /**
+     * Creates a new TreeSet of movies that are the same type and are in the range of specified runtime
+     * and orders them based on descending runtime and if they are the same runtime then alphabetically
+     *
+     * @param type the movie type, e.g. "MOVIE", "TV_SHOW", etc.
+     * @param start the minimum runtime in minutes (inclusive)
+     * @param end the maximum runtime in minutes (inclusive)
+     * @return Collection<Movie> result that contains movies that have the same type and are in specified
+     *          runtime.
+     */
     @Override
     public Collection<Movie> getMoviesByRuntime(String type, int start, int end) {
         // we use a comparator which orders Movie's of a type by descending runtime
@@ -102,6 +127,15 @@ public class MyIMDB extends IMDB {
         return result;
     }
 
+    /**
+     * Creates a new LinkedList of movies that are the same type and orders them based on descending number
+     * of votes.
+     *
+     * @param num number of movies to list
+     * @param type the movie type, e.g. "MOVIE", "TV_SHOW", etc.
+     * @return Collection<Movie> result that contains movies that have the same type and a specified length, num
+     *           in descending order.
+     */
     @Override
     public Collection<Movie> getMoviesMostVotes(int num, String type) {
         // use a comparator that orders Movie's of a type by descending number
@@ -118,6 +152,17 @@ public class MyIMDB extends IMDB {
         return result.subList(0, num);
     }
 
+    /**
+     * Creates a new Map with years as keys and the values are lists containing Movie. The lists contain
+     * the movies that are the highest rated with a certain type and in a specific year with a minimum
+     * of 1000 votes.
+     *
+     * @param num number of top movies
+     * @param type the movie type, e.g. "MOVIE", "TV_SHOW", etc.
+     * @param start the start year (inclusive)
+     * @param end the end year (inclusive)
+     * @return
+     */
     @Override
     public Map<Integer, List<Movie>> getMoviesTopRated(int num, String type, int start, int end) {
         Map<Integer, List<Movie>> result = new TreeMap<>();
