@@ -1,6 +1,7 @@
 package movies;
 
 import cs.Genre;
+import cs.MovieMaps;
 import cs.TitleType;
 
 import java.io.FileNotFoundException;
@@ -124,10 +125,16 @@ public class MyIMDB extends IMDB {
             }
         }
         for (int i = start; i <= end; i++) {
-            result.put(start, new LinkedList<>());
+            result.put(i ,new LinkedList<>());
         }
         for(Rating orderedRating : orderedRatings){
-            if(result.get(orderedRating.))
+            Movie movie = this.movieMap.get(orderedRating.getID());
+            if(result.get(movie.getYear()).size() == 0){
+                result.get(movie.getYear()).add(movie);
+            }
+            else if (result.get(movie.getYear()).size() < num) {
+                result.get(movie.getYear()).add(movie);
+            }
         }
         return result;
     }
