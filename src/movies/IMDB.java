@@ -11,7 +11,7 @@ import java.util.*;
  * into various protected structures that the subclass can access.
  *
  * @author RIT CS
- * @author YOUR NAME HERE
+ * @author Patricio Solis
  */
 public abstract class IMDB {
     /** the small basics dataset file name */

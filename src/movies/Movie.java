@@ -12,7 +12,7 @@ import java.util.Set;
  * Represent a movie.
  *
  * @author RIT CS
- * @author YOUR NAME HERE
+ * @author Patricio Solis
  */
 public final class Movie implements Comparable<Movie> {
     /** used in the movie file to indicate there is no entry for a field */

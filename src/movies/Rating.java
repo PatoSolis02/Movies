@@ -7,7 +7,7 @@ import java.util.Objects;
  * and then descending number of votes and then unique ID.
  *
  * @author RIT CS
- * @author YOUR NAME HERE
+ * @author Patricio Solis
  */
 public final class Rating implements Comparable<Rating> {
     /** the unique string ID of the movie */

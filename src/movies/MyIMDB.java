@@ -12,7 +12,7 @@ import java.util.*;
  * abstract query methods.
  *
  * @author RIT CS
- * @author YOUR NAME HERE
+ * @author Patricio Solis
  */
 public class MyIMDB extends IMDB {
     /**
@@ -45,11 +45,11 @@ public class MyIMDB extends IMDB {
 
         // TODO Activity 1.2
         TitleType titleType = TitleType.valueOf("MOVIE");
-        for (Movie movie : movieList) {
-            if (movie.getTitleType() == titleType && movie.getTitle().contains(words)) {
-                result.add(movie);
-            }
-        }
+
+        movieList.stream()
+                .filter(m -> m.getTitleType() == titleType && m.getTitle().contains(words))
+                .forEach(result::add);
+
         return result;
     }
 
@@ -69,11 +69,11 @@ public class MyIMDB extends IMDB {
         // TODO Activity 3.2
         Genre checkGenre = Genre.valueOf(genre);
         TitleType titleType = TitleType.valueOf(type);
-        for (Movie movie : movieList) {
-            if (movie.getGenres().contains(checkGenre) && movie.getYear() == year && movie.getTitleType() == titleType) {
-                result.add(movie);
-            }
-        }
+
+        movieList.stream()
+                .filter(m -> m.getGenres().contains(checkGenre) && m.getYear() == year && m.getTitleType() == titleType)
+                .forEach(result::add);
+
         return result;
     }
 
@@ -81,16 +81,24 @@ public class MyIMDB extends IMDB {
     public Collection<Movie> getMoviesByRuntime(String type, int start, int end) {
         // we use a comparator which orders Movie's of a type by descending runtime
         // and then title
-        Set<Movie> result = new TreeSet<>(new MovieComparatorRuntime());
-
+        Set<Movie> result = new TreeSet<>(
+                (m1, m2) -> { // implemented lambda
+                    int num = m2.getRuntimeMinutes() - m1.getRuntimeMinutes();
+                    if(num == 0) {
+                        num = m1.getTitle().compareTo(m2.getTitle());
+                    }
+                    return num;
+                }
+        );
         // TODO Activity 4.2
         TitleType titleType = TitleType.valueOf(type);
-        for (Movie movie : movieList) {
-            if (movie.getTitleType() == titleType && movie.getRuntimeMinutes() >= start
-                    && movie.getRuntimeMinutes() <= end) {
-                result.add(movie);
-            }
-        }
+
+        movieList.stream()
+                .filter(m -> m.getTitleType() == titleType)
+                .filter(m -> m.getRuntimeMinutes() >= start)
+                .filter(m -> m.getRuntimeMinutes() <= end)
+                .forEach(result::add);
+
         return result;
     }
 
@@ -102,11 +110,10 @@ public class MyIMDB extends IMDB {
         // TODO Activity 5.3
         TitleType titleType = TitleType.valueOf(type);
 
-        for (Movie movie : movieList) {
-            if (movie.getTitleType() == titleType) {
-                result.add(movie);
-            }
-        }
+        movieList.stream()
+                .filter(m -> m.getTitleType() == titleType)
+                .forEach(result::add);
+
         result.sort(new MovieComparatorVotes());
         return result.subList(0, num);
     }

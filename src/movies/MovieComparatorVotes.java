@@ -7,7 +7,7 @@ import java.util.Comparator;
  * and then alphabetically by title.
  *
  * @author RIT CS
- * @author YOUR NAME HERE
+ * @author Patricio Solis
  */
 public class MovieComparatorVotes implements Comparator<Movie> {
     /**
